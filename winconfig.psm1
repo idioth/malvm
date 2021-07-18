@@ -1,6 +1,6 @@
 # Remove apps
 # https://community.spiceworks.com/topic/2230169-powershell-script-to-remove-xbox-gamebar-from-the-app-list
-function remove_apps()
+function remove_apps
 {
     $packages = @(
         "7EE7776C.LinkedInforWindows"
@@ -84,7 +84,7 @@ function remove_apps()
 
 # Disable Windows Defender
 # https://github.com/fireeye/flare-vm/blob/master/install.ps1
-function disable_defender()
+function disable_defender
 {
     try
     {
@@ -134,7 +134,7 @@ function disable_defender()
 
 # Disable Windows Update
 # https://social.technet.microsoft.com/Forums/lync/en-US/abde2699-0d5a-49ad-bfda-e87d903dd865/disable-windows-update-via-powershell?forum=winserverpowershell
-function disable_update()
+function disable_update
 {
     New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows" -Name "WindowsUpdate" -ea 0 | Out-Null
     New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "AU" -ea 0 | Out-Null
@@ -146,7 +146,7 @@ get specific sid: https://techexpert.tips/powershell/powershell-get-user-sid/
 remove all registry key under specific key
 https://docs.microsoft.com/ko-kr/powershell/scripting/samples/working-with-registry-keys?view=powershell-7.1#removing-all-keys-under-a-specific-key
 #>
-function disable_startup()
+function disable_startup
 {
     $user = New-Object System.Security.Principal.NTAccount($env:username)
     $sid = ($user.Translate([System.Security.Principal.SecurityIdentifier])).Value
@@ -158,16 +158,16 @@ function disable_startup()
 }
 
 # https://community.spiceworks.com/how_to/159324-delete-scheduled-task-with-powershell
-function remove_task()
+function remove_task
 {
-    $TS = New-Object -ComObject Schedule.Service
-    $TS.Connect($env:COMPUTERNAME)
-    $TaskFolder = $TS.GetFolder('\')
-    $Tasks = $TaskFolder.GetTasks(1)
+    $ts = New-Object -ComObject Schedule.Service
+    $ts.Connect($env:computername)
+    $taskfolder = $ts.GetFolder('\')
+    $tasks = $taskfolder.GetTasks(1)
 
-    foreach($Task in $Tasks)
+    foreach($task in $tasks)
     {
-        $TaskFolder.DeleteTask($Task.Name, 0)
-    }
+        $taskfolder.DeleteTask($task.Name, 0)
+t}
 
 }

@@ -1,5 +1,5 @@
 Import-Module $PSScriptRoot\winconfig.psm1
-Import-Module $PSScriptRoot\download.psm1
+Import-Module $PSScriptRoot\application.psm1
 
 # check run as administrator
 $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -43,3 +43,18 @@ disable_startup
 
 # remove scheduled task
 remove_task
+
+# download apps
+download_apps
+
+# download_windbg_preview
+
+# create desktop shortcut
+create_desktop_shortcut "C:\Program Files\Wireshark\Wireshark.exe" "Wireshark"
+
+# pin taskbar
+pin_taskbar "C:\ProgramData\chocolatey\lib\procexp\tools\procexp.exe"
+pin_taskbar "C:\ProgramData\chocolatey\lib\procexp\tools\procexp64.exe"
+pin_taskbar "C:\ProgramData\chocolatey\lib\die\tools\die_win64_portable\die.exe"
+pin_taskbar "C:\ProgramData\chocolatey\lib\PeStudio\tools\pestudio\pestudio.exe"
+pin_taskbar "C:\Program Files\Microsoft VS Code\Code.exe"
